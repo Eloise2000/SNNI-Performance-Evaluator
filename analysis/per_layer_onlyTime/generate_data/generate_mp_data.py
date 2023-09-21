@@ -23,8 +23,9 @@ maxpool_C1 = []
 time_cost = []
 
 # Set variable here
-show_server = 1 # 0: client; 1: server
-target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/"
+show_server = 0 # 0: client; 1: server
+# target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_origin/"
+target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_without_sqnet/"
 
 if show_server:
     col_name = "server"

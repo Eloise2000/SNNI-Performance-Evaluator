@@ -23,8 +23,9 @@ avgpool_C1 = []
 time_cost = []
 
 # Set variable here
-show_server = 1 # 0: client; 1: server
-target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/"
+show_server = 0 # 0: client; 1: server
+# target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_origin/"
+target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_without_sqnet/"
 
 if show_server:
     col_name = "server"
@@ -85,7 +86,7 @@ if __name__ == "__main__":
     generate("short2", 1, 15)
     generate("resnet50", 1, 15)
     generate("densenet121", 1, 15)
-    generate("sqnet", 1, 15)
+    # generate("sqnet", 1, 15)
     generate("conv1", 1, 15)
     generate("conv2", 1, 15)
     generate("conv3", 1, 15)

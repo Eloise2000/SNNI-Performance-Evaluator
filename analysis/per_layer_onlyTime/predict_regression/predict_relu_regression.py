@@ -8,18 +8,23 @@ from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
 from joblib import dump
 
+''' Initialize variables here '''
 show_server = 0
 if show_server:
     name = "server"
 else: 
     name = "client"
 
+# target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_origin/"
+target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_without_sqnet/"
+layer_filepath = target_folder + "relu_onlyTime_" + name + ".csv"
+df = pd.read_csv(layer_filepath, delimiter="\s+")
+# folder_path = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/predict_regression/LR_model/"
+folder_path = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/predict_regression/LR_model_without_sqnet/"
+
 '''
 relu columns= 'relu_coeff','time_cost'
 '''
-layer_filepath = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/relu_onlyTime_" + name + ".csv"
-df = pd.read_csv(layer_filepath, delimiter="\s+")
-
 ### Process on dataset
 print("*** Number of data before processing: ", df.size)
 df = df[df['time_cost'] > 0]
@@ -45,7 +50,6 @@ reg = LinearRegression(positive=True).fit(X_normalized, y)
 # print("score is: ", reg.score(X_normalized, y))
 
 ''' Dump the result '''
-folder_path = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/predict_regression/LR_model/"
 dump(reg, folder_path + 'relu_client_LR_model.joblib')
 dump(scaler, folder_path + 'relu_client_scaler.joblib')
 

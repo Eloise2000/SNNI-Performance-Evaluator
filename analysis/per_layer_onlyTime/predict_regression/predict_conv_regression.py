@@ -8,18 +8,23 @@ from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
 from joblib import dump
 
-show_server = 1
+''' Initialize variables here '''
+show_server = 0
 if show_server:
     name = "server"
 else: 
     name = "client"
 
+# target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_origin/"
+target_folder = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/data_without_sqnet/"
+layer_filepath = target_folder + "conv_onlyTime_" + name + ".csv"
+df = pd.read_csv(layer_filepath, delimiter="\s+")
+# folder_path = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/predict_regression/LR_model/"
+folder_path = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/predict_regression/LR_model_without_sqnet/"
+
 '''"conv_N", "conv_H", "conv_W", "conv_CI", "conv_FH", "conv_FW", "conv_CO", 
     "conv_zPadHLeft", "conv_zPadHRight", "conv_zPadWLeft", "conv_zPadWRight", 
     "conv_strideH", "conv_strideW","time_cost"'''
-
-layer_filepath = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/dataset/conv_onlyTime_" + name + ".csv"
-df = pd.read_csv(layer_filepath, delimiter="\s+")
 
 # print(df.head(10))
 # X = df.loc[:, ["conv_N", "conv_H", "conv_W", "conv_CI", "conv_FH", "conv_FW", "conv_CO", "conv_S", "conv_Padding"]]
@@ -73,9 +78,8 @@ reg = LinearRegression(positive=True).fit(X_normalized, y)
 # print("score is: ", reg.score(X_normalized, y))
 
 ''' Dump the result '''
-# folder_path = "/home/eloise/eloise/script/analysis/per_layer_onlyTime/predict_regression/LR_model/"
-# dump(reg, folder_path + 'conv_client_LR_model.joblib')
-# dump(scaler, folder_path + 'conv_client_scaler.joblib')
+dump(reg, folder_path + 'conv_client_LR_model.joblib')
+dump(scaler, folder_path + 'conv_client_scaler.joblib')
 
 # Get the regression coefficients
 coefficients = reg.coef_
