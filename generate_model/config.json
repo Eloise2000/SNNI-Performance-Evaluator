@@ -1,0 +1,8 @@
+{
+    "model_name": "model_convap9.pb",
+    "input_tensors": { "input" : "1,224,224,3"},
+    "target": "SCI",
+    "backend": "HE",
+    "scale": 12,
+    "output_tensors": [ "argmax_output"]
+}
