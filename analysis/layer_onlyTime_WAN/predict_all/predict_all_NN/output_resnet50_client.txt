@@ -1,0 +1,40 @@
+1/2 [==============>...............] - ETA: 0s2/2 [==============================] - 0s 3ms/step
+The real time cost for conv layer:  304666.0
+The predict time cost for conv layer:  [307552.]
+Difference is:  [2886.]
+1/2 [==============>...............] - ETA: 0s2/2 [==============================] - 0s 2ms/step
+
+The real time cost for relu layer:  139801.0
+The predict time cost for relu layer:  [136167.53]
+Difference is:  [-3633.4688]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 65ms/step
+
+The real time cost for maxpool layer:  24506.0
+The predict time cost for maxpool layer:  [24244.676]
+Difference is:  [-261.32422]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 63ms/step
+
+The real time cost for avgpool layer:  218.0
+The predict time cost for avgpool layer:  [360.6629]
+Difference is:  [142.6629]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 62ms/step
+
+The real time cost for BN layer:  27493.0
+The predict time cost for BN layer:  [28831.29]
+Difference is:  [1338.2891]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 59ms/step
+
+The real time cost for trunc layer:  89341.0
+The predict time cost for trunc layer:  [89461.94]
+Difference is:  [120.9375]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 55ms/step
+
+The real time cost for FC layer:  403.0
+The predict time cost for FC layer:  [395.79788]
+Difference is:  [-7.202118]
+
+The real all runtime is:  587754.0
+The predict all runtime is:  [587013.94]
+Difference is:  [-740.0625]
+Error percentage is:  [0.12591365] %
+Time for prediction is:  1966.8946266174316  ms

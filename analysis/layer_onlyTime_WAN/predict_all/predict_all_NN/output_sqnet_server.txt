@@ -1,0 +1,25 @@
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 220ms/step
+The real time cost for conv layer:  29357.0
+The predict time cost for conv layer:  [28828.445]
+Difference is:  [-528.5547]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 62ms/step
+
+The real time cost for relu layer:  40832.0
+The predict time cost for relu layer:  [34650.7]
+Difference is:  [-6181.301]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 61ms/step
+
+The real time cost for maxpool layer:  42580.0
+The predict time cost for maxpool layer:  [41987.93]
+Difference is:  [-592.0703]
+1/1 [==============================] - ETA: 0s1/1 [==============================] - 0s 52ms/step
+
+The real time cost for avgpool layer:  209.0
+The predict time cost for avgpool layer:  [181.42798]
+Difference is:  [-27.572021]
+
+The real all runtime is:  113705.0
+The predict all runtime is:  [105648.51]
+Difference is:  [-8056.492]
+Error percentage is:  [7.0854335] %
+Time for prediction is:  1576.4708518981934  ms
