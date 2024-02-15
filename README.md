@@ -54,11 +54,11 @@ If this study is helping your research, consider to cite it is as follows, thank
 
   `python data/script/<example_test>`
   Replace `<example_test>` with the actual name of your test file under `data/script` folder. -->
-
-<!-- ## Repository Structure
+<!-- 
+## Repository Structure
 This is the root directory of the repository. The directory is structured as follows:
 
-    GoGreen2-replication-package
+    SNNI-Performance-Evaluator
      .
      |
      |--- src/                             Source code and dependencies used in the paper
