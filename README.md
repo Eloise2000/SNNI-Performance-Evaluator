@@ -11,14 +11,14 @@ For any inquiries, please contact the authors via the provided email addresses.
 **Zoltán Ádám Mann** (z.a.mann@uva.nl)
 
 
-<!-- ## Repository Contents
+## Repository Contents
 This repository contains all the materials required for replicating the study, including:
 
-- Source code required to reproduce our experiment. Detailed information about dependencies and setup instructions are provided.
+- The dataset generated from the experiment that yielded the results presented in our paper.
 
-- Dataset generated from the experiment that led to the results presented in our paper.
+- The source code required to reproduce the results presented in our paper, utilizing the provided dataset.
 
-- Code necessary to reproduce the results presented in our paper using the provided dataset. -->
+- A comprehensive set of additional results complementing those presented in the paper.
 
 <!-- ## How to cite us
 The scientific article describing design, execution, and main results of this study is available [here](https://www.google.com).<br> 
