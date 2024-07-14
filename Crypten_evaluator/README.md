@@ -4,7 +4,7 @@ Here is a step-by-step tutorial on how to build and run the evaluator for Secure
 
 ## How to Run the Experiment
 The experiment includes three main steps:
-1. Constructing various neural network architectures
+1. Constructing various neural network models
 2. Running secure neural network inference in a 2PC setting
 3. Building analytical models for performance evaluation
 
@@ -21,36 +21,46 @@ pip install crypten
 
 Navigate to the `generate_model` directory to generate random PyTorch models saved as `.pth` files.
 
-#### For Layers: Conv, Relu, AvgPool, and BatchNorm
-
-Execute the following bash script:
 ```sh
 cd generate_model
+```
+
+#### For Layers: Conv, Relu, AvgPool, and BatchNorm
+
+```sh
 bash run_multiple_seeds_avgbn.sh
 ```
 
 #### For Layers: Conv, Relu, and MaxPool
 ```sh
-cd generate_model
 bash run_multiple_seeds_convmp.sh
 ```
 
 #### For Layers: Linear and Dropout
 ```sh
-cd generate_model
 bash run_multiple_seeds_fcdrop.sh
 ```
 
 #### Notes:
 
-- **Random Model Initialization:** All model parameters are randomly initialized. For specific models, define them directly in PyTorch.
+- **Random Model Initialization:** All model parameters are randomly initialized. For specific models, define them directly in the `create_model` file using PyTorch.
   
 - **Random Seeds:** The bash scripts use sample random seeds. Modify these scripts to use additional seeds as needed.
   
-- **Convolutional Layer Architecture:** Convolutional layers are defined in two separate architecture files to provide architectural variety.
+- **Convolutional Layer Architecture:** Convolutional layers are defined in two separate model files to provide architectural variety.
   
 - **Testing Flag (`TEST_FLAG`):** This flag determines whether the generated models are tested during secure inference in a single party environment to catch errors.
   
-- **MaxPool Layer Empirical Map:** The `empirical_map` is manually configured for random generation of MaxPool layers to avoid memory allocation errors. Refer to the [troubleshooting](#troubleshooting) for more details.
+- **Empirical Map:** The `empirical_map` is manually configured for random generation of Convolutional layers to avoid memory allocation errors. Refer to the [troubleshooting](#troubleshooting) for more details.
+
+
+
+
 
 ## Troubleshooting
+
+### Error Code 12: Cannot Allocate Memory
+
+This runtime error can occur when the model requires more memory allocation for secure computing than the hardware can provide. It can be detected during the test of secure inference.
+
+To mitigate this issue, an `empirical_map` has been created for the Convolutional layer to avoid memory allocation errors in an 8GB RAM CPU-only environment. Additionally, empirical constraints are applied to the MaxPool layer in the `check_maxpool` function.
