@@ -19,7 +19,7 @@ pip install crypten
 
 ### Building Models on the Server Side
 
-Navigate to the `generate_model` directory to generate random PyTorch models saved as `.pth` files.
+Navigate to the `generate_model` directory to generate random PyTorch models and save as `.pth` files.
 
 ```sh
 cd generate_model
@@ -53,8 +53,28 @@ bash run_multiple_seeds_fcdrop.sh
   
 - **Empirical Map:** The `empirical_map` is manually configured for random generation of Convolutional layers to avoid memory allocation errors. Refer to the [troubleshooting](#troubleshooting) for more details.
 
+### Running SNNI in 2PC setting
+#### Quick Start
+Navigate to the `inference` directory to run inference in 2PC setting.
 
+1. Include `common.sh` and `script/*_run.py` scripts on both the client and server sides, and install Crypten on both sides.
 
+2. Include the `.pth` pretrained model file in the **server** `/generate_model/models` directory.
+
+3. Modify `common.sh`:
+   - For both the client and server:
+     - Change `MASTER_ADDR` to the IP address of the master.
+   - For the client:
+     - Set `RANK=0`.
+   - For the server:
+     - Set `RANK=1`.
+
+4. Run the following commands on both the client and server sides:
+```sh
+bash common.sh
+python3 script/*_run.py $seed
+```
+Replace `$seed` with the same random seed used for building the model architecture.
 
 
 ## Troubleshooting
