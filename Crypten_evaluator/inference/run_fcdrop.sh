@@ -7,7 +7,7 @@ num_runs=5
 for seed in 17 36 42 49
 do
     net="fcdrop_rs$seed"
-    log_dir="./result_WAN/$net"
+    log_dir="./result_server_WAN/$net"
     echo "Net $net"
 
     # Loop to run the commands

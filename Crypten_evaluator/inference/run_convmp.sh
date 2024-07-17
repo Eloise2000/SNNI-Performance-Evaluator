@@ -7,7 +7,7 @@ num_runs=5
 for seed in 17 23 36 42 49 53 62 79 81 97
 do
     net="convmp_rs$seed"
-    log_dir="./result_WAN/$net"
+    log_dir="./result_server_WAN/$net"
     echo "Net $net"
 
     # Loop to run the commands

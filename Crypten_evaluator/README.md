@@ -9,8 +9,12 @@ Here is a step-by-step tutorial on how to build and run the evaluator for Secure
   - [Building Models on the Server Side](#building-models-on-the-server-side)
   - [Running SNNI in 2PC setting](#running-snni-in-2pc-setting)
     - [Quick Start](#quick-start)
-    - [Setting up throttle](#setting-up-throttle)
+    - [Setting up Throttle](#setting-up-throttle)
     - [For Batch Testing](#for-batch-testing)
+    - [Other Tests](#other-tests)
+  - [Building Models for Performance Evaluation](#building-models-for-performance-evaluation)
+    - [Data Pre-processing](#data-pre-processing)
+    - [Build Analytical Model](#build-analytical-model)
 - [Troubleshooting](#troubleshooting)
   - [Error Code 12: Cannot Allocate Memory](#error-code-12-cannot-allocate-memory)
 
@@ -85,9 +89,9 @@ Navigate to the `inference` directory to run inference in 2PC setting.
 4. Run the following commands on both the client and server sides:
     ```sh
     bash common.sh
-    python3 script/*_run.py $seed
+    python3 script/*_run.py <seed>
     ```
-    Replace `$seed` with the same random seed used for building the model architecture.
+    Replace `<seed>` with the same random seed used for building the model architecture.
 
 #### Notes: <!-- omit from toc -->
 - The pretrained models should be only in the server side, as they are considered as the server's property in SNNI.
@@ -96,7 +100,7 @@ Navigate to the `inference` directory to run inference in 2PC setting.
 
 - During inference, the features for each layer and their corresponding runtime will be printed out.
 
-#### Setting up throttle
+#### Setting up Throttle
 
 If you wish to set up bandwidth and ping latency in SNNI by manipulating traffic control (tc) settings on a network interface in Linux, you can use the `throttle.sh` file.
 
@@ -118,15 +122,31 @@ If you wish to set up bandwidth and ping latency in SNNI by manipulating traffic
     ```
 
 - Test throttle:
-    - Check latency: `ping server_ip` (replace server_ip with actual server IP)
+    - Check latency: `ping <server_ip>` (replace `<server_ip>` with actual server IP)
     - Check bandwidth:
         - Server side: `iperf3 -s`
-        - Client side: `iperf3 -c server_ip -t 10`
+        - Client side: `iperf3 -c <server_ip> -t 10`
 
 #### For Batch Testing
 If you want to run multiple random seeds several times to gather runtime data for each layer, refer to the `run_*.sh` bash files. These scripts demonstrate how to collect data and save the log out file on the server side.
 
+#### Other Tests
+Apart from runtime collection, other tests can be conducted during SNNI. For example, you can test memory cost and CPU usage using `psrecord`, or test energy cost during SNNI. Sample plots using `psrecord` can be found in the `sample_plot` folder.
 
+### Building Models for Performance Evaluation
+
+Navigate to the `evaluation` directory to process the raw data and build analytical models for each layer.
+
+#### Data Pre-processing
+
+First, we pre-process the layer runtime data from logged TXT file format to CSV file format for each layer, including the layer's features and runtime.
+
+```sh
+python3 ./generate_data/generate_<layer>_data.py
+```
+Modify `<layer>` to the specific layer you are processing.
+
+#### Build Analytical Model
 
 ## Troubleshooting
 
