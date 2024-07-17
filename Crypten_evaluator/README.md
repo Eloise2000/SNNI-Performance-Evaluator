@@ -1,3 +1,7 @@
+# Table of Contents
+
+[TOC]
+
 # Evaluator for Crypten
 ## Introduction
 Here is a step-by-step tutorial on how to build and run the evaluator for Secure Neural Network Inference (SNNI) using the secure computing protocol achieved by Crypten. [CrypTen](https://github.com/facebookresearch/CrypTen?tab=readme-ov-file) is a framework for Privacy-Preserving Machine Learning, built on PyTorch and based on Secure Multiparty Computation. In this tutorial, we will guide you through constructing various network architectures, executing secure inference within Crypten, collecting runtime data of each layer for each architecture, and developing analytical prediction models to estimate the runtime of each layer. This work can be applied in [Neural Architecture Search](https://en.wikipedia.org/wiki/Neural_architecture_search) for exploring efficient neural network architectures for secure inference.
@@ -75,6 +79,46 @@ bash common.sh
 python3 script/*_run.py $seed
 ```
 Replace `$seed` with the same random seed used for building the model architecture.
+
+#### Notes:
+- The pretrained models should be only in the server side, as they are considered as the server's property in SNNI.
+
+- For demonstration purposes, we use a dummy input for inference. If you intend to use real input data, ensure it remains only on the client side. Initiate an all-zero input of the same size on the server side.
+
+- During inference, the features for each layer and their corresponding runtime will be printed out.
+
+#### Setting up throttle
+
+If you wish to set up bandwidth and ping latency in SNNI by manipulating traffic control (tc) settings on a network interface in Linux, you can use the `throttle.sh` file.
+
+- Setup bandwidth and ping latency to mimic LAN (Local Area Network):
+  ```sh
+  bash throttle.sh lan
+  ```
+
+For demonstration, this sets bandwidth to 7 Gbps and ping latency to 0.3 ms.
+
+- Setup bandwidth and ping latency to mimic WAN (Wide Area Network):
+  ```sh
+  bash throttle.sh wan
+  ```
+
+For demonstration, this sets bandwidth to 1 Gbps and ping latency to 10 ms.
+
+- Delete the throttle:
+  ```sh
+  bash throttle.sh del
+  ```
+
+- Test throttle:
+    - Check latency: `ping server_ip` (replace server_ip with actual server IP)
+    - Check bandwidth:
+        - Server side: `iperf3 -s`
+        - Client side: `iperf3 -c server_ip -t 10`
+
+
+
+
 
 
 ## Troubleshooting

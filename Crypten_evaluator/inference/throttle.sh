@@ -13,8 +13,8 @@ fi
 if [ "$1" == "lan" ]
 then
 sudo tc qdisc del dev $DEV root
-## about 3Gbps
-# sudo tc qdisc add dev $DEV root handle 1: tbf rate 3000mbit burst 100000 limit 10000
+## about 7Gbps
+# sudo tc qdisc add dev $DEV root handle 1: tbf rate 7gbit burst 100000 limit 10000
 sudo tc qdisc add dev $DEV root handle 1: tbf rate 7gbit burst 100000 limit 10000
 ## about 0.3ms ping latency
 sudo tc qdisc add dev $DEV parent 1:1 handle 10: netem delay 0.15msec
@@ -31,8 +31,8 @@ else
     echo "Qdisc with handle zero not found. Nothing to delete."
 fi
 
-## about 400Mbps
-# sudo tc qdisc add dev $DEV root handle 1: tbf rate 400mbit burst 100000 limit 10000
+## about 1Gbps
+# sudo tc qdisc add dev $DEV root handle 1: tbf rate 1gbit burst 100000 limit 10000
 sudo tc qdisc add dev $DEV root handle 1: tbf rate 1gbit burst 100000 limit 10000
 ## about 10ms ping latency (each 5ms)
 sudo tc qdisc add dev $DEV parent 1:1 handle 10: netem delay 5msec
