@@ -1,5 +1,5 @@
 #!/bin/bash
-. /home/eloise/crypten/script/common.sh
+bash ./script/common.sh
 echo $MASTER_ADDR $MASTER_PORT
 
 num_runs=5
@@ -7,7 +7,7 @@ num_runs=5
 for seed in 17 23 36 42 49 53 62 79 81 97
 do
     net="avgbn_rs$seed"
-    log_dir="/home/eloise/crypten/result_32GB_RAM_16_core/result_server_WAN/$net"
+    log_dir="./result_WAN/$net"
     echo "Net $net"
 
     # Loop to run the commands
@@ -18,7 +18,7 @@ do
         # Create data_$i directory for logs
         mkdir -p "$log_dir/data_$i"
 
-        cd /home/eloise/crypten/script/model_run
+        cd ./script
         # Run server command and redirect output to log file
         python3 avgbn_run.py $seed >> $log_dir/data_$i/log_server.txt &
         # python3 convmp_run.py $seed &
