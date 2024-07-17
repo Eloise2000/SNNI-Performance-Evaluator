@@ -147,6 +147,13 @@ python3 ./generate_data/generate_<layer>_data.py
 Modify `<layer>` to the specific layer you are processing.
 
 #### Build Analytical Model
+Next, we build an analytical model for each layer based on the method presented in our paper.
+
+```sh
+python3 ./predict_regression/predict_<layer>_regression.py
+```
+
+The regression model and the scaler for normalization are stored as .joblib files, and the results on the test dataset will be directly printed out.
 
 ## Troubleshooting
 
